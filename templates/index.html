@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card animate-fade-in">
+    <div class="badge">رزرو آنلاین دیت</div>
+    <h1>برنامه‌ریزی برای یک شب خاص</h1>
+    <p>لطفاً اطلاعات خود و زمان مورد نظرتان را وارد کنید.</p>
+
+    <form action="/book" method="POST" class="booking-form">
+        <input type="text" name="name" placeholder="نام و نام خانوادگی" required>
+        <input type="text" name="phone" placeholder="شماره تماس" required>
+        
+        <div class="datetime-group">
+            <input type="text" id="pdatepicker" name="date" placeholder="انتخاب روز (شمسی)" required readonly>
+            <input type="time" name="time" min="16:00" max="22:00" required>
+        </div>
+        <small style="color: #94a3b8; display: block; margin-bottom: 15px;">ساعات مجاز: ۱۶:۰۰ الی ۲۲:۰۰</small>
+
+        <button type="submit" class="button btn-block">تأیید و ثبت رزرو</button>
+    </form>
+</div>
+
+<!-- اسکریپت تقویم شمسی -->
+<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+<script src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+<script>
+    jalaliDatepicker.startWatch();
+    document.getElementById("pdatepicker").addEventListener("click", function(){
+        jalaliDatepicker.show(this);
+    });
+</script>
+{% endblock %}

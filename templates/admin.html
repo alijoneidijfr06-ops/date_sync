@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="max-width: 800px;">
+    <h1>لیست رزروها</h1>
+    <a href="/logout" style="color: #94a3b8;">خروج</a>
+    <table>
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>تماس</th>
+                <th>تاریخ</th>
+                <th>ساعت</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in bookings %}
+            <tr>
+                <td>{{ b.name }}</td>
+                <td>{{ b.phone }}</td>
+                <td>{{ b.date }}</td>
+                <td>{{ b.time }}</td>
+                <td><a href="/delete/{{ b.id }}" class="delete-btn" onclick="return confirm('حذف شود؟')">حذف</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
